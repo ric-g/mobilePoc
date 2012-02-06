@@ -51,8 +51,8 @@ Ext.define('cv.navigation'
  xtype: 'cvNavigation'
  config:
   id: 'cvNavigationID'
-  items: [
-   title: 'CitiVelocity'
+  navigationBar:
+   docked: 'top'
    items: [
     {
      xtype: 'button'
@@ -62,6 +62,10 @@ Ext.define('cv.navigation'
      handler: ->
       console.log 'ok button'
      }
+   ]
+  items: [
+   title: 'CitiVelocity'
+   items: [
      {dock: 'bottom', xtype: 'cvMenu'}
    ]
   ]
@@ -100,6 +104,33 @@ Ext.define('cv.Menu'
 
 )
 
+Ext.define('cv.Page'
+ extend: 'Ext.Panel'
+ config:
+  pageId: ''
+ initialize: ->
+  console.log 'page initialize'
+  
+)
+
+Ext.define('cv.Page.M'
+ extend: 'cv.Page'
+ initialize: ->
+  @callParent.apply(this,arguments)
+  console.log 'page M initialize'
+)
+
+
+Ext.define('cv.Controller.Page'
+ extend: 'Ext.app.Controller'
+ config:
+  refs:
+   nav: 'mainNav'
+ changePage: (options)->
+  console.log 'Page Controller changePage'
+ init: ->
+  console.log 'Page Controller init'
+)
 
 doOnReady = (fn,scope,options) ->
  console.log 'onready'

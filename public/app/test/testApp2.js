@@ -42,19 +42,25 @@
     xtype: 'cvNavigation',
     config: {
       id: 'cvNavigationID',
+      navigationBar: {
+        docked: 'top',
+        items: [
+          {
+            xtype: 'button',
+            layout: 'fit',
+            text: 'ok',
+            ui: 'round',
+            handler: function() {
+              return console.log('ok button');
+            }
+          }
+        ]
+      },
       items: [
         {
           title: 'CitiVelocity',
           items: [
             {
-              xtype: 'button',
-              layout: 'fit',
-              text: 'ok',
-              ui: 'round',
-              handler: function() {
-                return console.log('ok button');
-              }
-            }, {
               dock: 'bottom',
               xtype: 'cvMenu'
             }
@@ -105,6 +111,39 @@
         }
       ];
       return this.superclass.constructor.apply(this, arguments);
+    }
+  });
+
+  Ext.define('cv.Page', {
+    extend: 'Ext.Panel',
+    config: {
+      pageId: ''
+    },
+    initialize: function() {
+      return console.log('page initialize');
+    }
+  });
+
+  Ext.define('cv.Page.M', {
+    extend: 'cv.Page',
+    initialize: function() {
+      this.callParent.apply(this, arguments);
+      return console.log('page M initialize');
+    }
+  });
+
+  Ext.define('cv.Controller.Page', {
+    extend: 'Ext.app.Controller',
+    config: {
+      refs: {
+        nav: 'mainNav'
+      }
+    },
+    changePage: function(options) {
+      return console.log('Page Controller changePage');
+    },
+    init: function() {
+      return console.log('Page Controller init');
     }
   });
 
